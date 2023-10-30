@@ -233,5 +233,6 @@ class DataChampView extends WatchUi.DataField {
 }
 
 // TODO: 
+// grade, altitude, cadence, ascent, time, gears, 
 // combined battery icon section
 // power 3s section

@@ -86,11 +86,25 @@ class SpeedDataInfo extends DataInfo
     {
         self.text = "0";
         if(info has :currentSpeed && info.currentSpeed != null){
+            var speed = info.currentSpeed;
+
+            self.color = Graphics.COLOR_BLACK;
+
+            if(speed > 45)
+            {
+                self.color = Graphics.COLOR_RED;
+            }
+            else if(speed > 40)
+            {
+                self.color = Graphics.COLOR_ORANGE;
+            }
+
             self.text = info.currentSpeed.format("%d");
         }
     }
 }
 
+// eis warnung
 class TempDataInfo extends DataInfo
 {
     function initialize() {
@@ -186,11 +200,15 @@ class DataChampView extends WatchUi.DataField {
                 textHeight = self.getTextHeight(data.text, dc, fontSize);
             }
 
+            dc.setColor(data.color, Graphics.COLOR_WHITE);
+
             dc.drawText((self.cellWidth * i) + (self.cellWidth / 2) - (textWidth / 2), 
                 (self.height / 2) - (textHeight / 2), 
                 fontSize, 
-                data.text, 
+                data.text,
                 Graphics.TEXT_JUSTIFY_LEFT);
+
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
 
             dc.drawText((self.cellWidth * i) + 4, 
                 self.height - 14, 
@@ -233,6 +251,8 @@ class DataChampView extends WatchUi.DataField {
 }
 
 // TODO: 
+// icon wetter
 // grade, altitude, cadence, ascent, time, gears, 
 // combined battery icon section
 // power 3s section
+// marker feature tag gpx
